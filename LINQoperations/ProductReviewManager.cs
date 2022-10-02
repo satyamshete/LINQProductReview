@@ -40,5 +40,13 @@ namespace LINQoperations
             var res = (from product in products orderby product.rating descending select product).Take(3).ToList();
             DisplayRecords(res);
         }
+        /// UC3--Retrieve  records from list based on productid and rating > 3  
+        public static void RetrieveRecordsBasedOnRatingAndProductId(List<ProductReview> products)
+        {
+            AddingProductReview(products);
+            Console.WriteLine("\n-----------Retrieve Records Based On Rating and Product Id-----------");
+            var res = (from product in products where product.rating > 3 && (product.productId == 1 || product.productId == 4 || product.productId == 9) select product).ToList();
+            DisplayRecords(res);
+        }
     }
 }
