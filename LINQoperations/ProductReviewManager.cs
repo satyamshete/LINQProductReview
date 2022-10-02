@@ -114,5 +114,13 @@ namespace LINQoperations
                 Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", p["productId"], p["userId"], p["rating"], p["review"], p["isLike"]);
             }
         }
+        ///UC-10 Finding the average rating value
+        public static void AverageOfRating()
+        {
+            List<ProductReview> products = new List<ProductReview>();
+            DataTable table1 = CreateDataTable(products);
+            double result = (double)table1.Select().Where(p => p["rating"] != DBNull.Value).Select(c => Convert.ToDecimal(c["rating"])).Average();
+            Console.WriteLine("Avarage is: "+result);
+        }
     }
 }
