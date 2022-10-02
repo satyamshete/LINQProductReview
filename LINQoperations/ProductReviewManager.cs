@@ -79,7 +79,7 @@ namespace LINQoperations
             DisplayRecords(res);
         }
         /// UC8-->Using DataTable 
-        public static void CreateDataTable(List<ProductReview> products)
+        public static DataTable CreateDataTable(List<ProductReview> products)
         {
             AddingProductReview(products);
             DataTable dt = new DataTable();
@@ -93,11 +93,23 @@ namespace LINQoperations
             {
                 dt.Rows.Add(data.productId, data.userId, data.rating, data.review, data.isLike);
             }
-            DisplayTable(dt);
+           // DisplayTable(dt);
+            return dt;
         }
         public static void DisplayTable(DataTable table)
         {
             foreach (DataRow p in table.Rows)
+            {
+                Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", p["productId"], p["userId"], p["rating"], p["review"], p["isLike"]);
+            }
+        }
+        /// UC9-retrieve the records whose column islike has true using (DataTable)
+        public static void ReturnsOnlyIsLikeFieldAsTrue()
+        {
+            List<ProductReview> products = new List<ProductReview>();
+            DataTable table = CreateDataTable(products);
+            var res = from t in table.AsEnumerable() where t.Field<bool>("isLike") == true select t;
+            foreach (var p in res)
             {
                 Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", p["productId"], p["userId"], p["rating"], p["review"], p["isLike"]);
             }
