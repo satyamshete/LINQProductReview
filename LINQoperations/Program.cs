@@ -17,7 +17,8 @@ namespace LINQoperations
                               "\n6.Skip Top five records"+ 
                               "\n7.Retrieving ProductID,Reviews and Adding values to DataTable" + 
                               "\n8.retrieve the records whose column islike has true using (DataTable)"+
-                              "\n9.Finding the average rating value\""
+                              "\n9.Finding the average rating value\"+" +
+                              "\n10.Retrieve all records with message 'Good' in ProductReview\""
                               );
             int option = Convert.ToInt32(Console.ReadLine());
             //Creating a list for Product Review 
@@ -50,6 +51,9 @@ namespace LINQoperations
                     break;
                 case 9:
                     ProductReviewManager.AverageOfRating();
+                    break;
+                case 10:
+                    ProductReviewManager.ReturnsReviewMessageContainsGood();
                     break;
                 default:
                     Console.WriteLine("Enter proper selection");
